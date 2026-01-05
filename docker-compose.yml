@@ -11,6 +11,12 @@ services:
       timeout: 10s
       retries: 3
     restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
 
   backend:
     build: ./backend
@@ -24,16 +30,17 @@ services:
     volumes:
       - ./backend:/app
 
-  # frontend:
-  #   build: ./frontend
-  #   ports:
-  #     - "8501:8501"
-  #   environment:
-  #     - API_URL=http://backend:8000/query
-  #   depends_on:
-  #     - backend
-  #   volumes:
-  #     - ./frontend:/app
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8501:8501"
+    environment:
+      - API_URL=http://backend:8000/query
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
   
 
   demo-backend:
@@ -46,6 +53,6 @@ services:
     volumes:
       - ./demo_backend:/app
  
-    # entrypoint: ["/bin/sh", "-c", "sleep 10 && python demo_script.py"]
+
 
 

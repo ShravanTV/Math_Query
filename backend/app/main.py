@@ -32,15 +32,6 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Configure CORS middleware for cross-origin requests from web frontend
-# In production, replace "*" with specific allowed origins for security
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Development setting - restrict in production
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 # Load Ollama configuration from environment variables with sensible defaults
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
@@ -105,14 +96,14 @@ def query(request: QueryRequest):
         
         return QueryResponse(response=result)
         
-    except requests.exceptions.Timeout:
+    except requests.exceptions.Timeout as e:
         error_msg = "Request to Ollama service timed out"
         logger.error(f"{error_msg}: {e}")
         return JSONResponse(
             status_code=504, 
             content={"response": f"Ollama service timeout: Request exceeded 180 seconds"}
         )
-    except requests.exceptions.ConnectionError:
+    except requests.exceptions.ConnectionError as e:
         error_msg = "Could not connect to Ollama service"
         logger.error(f"{error_msg}: {e}")
         return JSONResponse(
