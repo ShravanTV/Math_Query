@@ -1,0 +1,7 @@
+fastapi
+flask
+flask_cors
+uvicorn
+python-dotenv
+requests
+starlette
