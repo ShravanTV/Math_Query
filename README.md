@@ -61,17 +61,13 @@ docker-compose up --build -d
 
 ### Accessing the Application
 
-- **Web Interface**: http://localhost:8501
-- **Backend API**: http://localhost:8000
-- **Ollama API**: http://localhost:11434
-- **API Documentation**: http://localhost:8000/docs
+- **Web Interface**: http://localhost:8501 (Streamlit web interface - Access the web interface to interact and ask questions to the Math Query LLM.)
+- **Backend API**: http://localhost:8000 (FastAPI backend)
+- **Ollama API**: http://localhost:11434 (LLM service)
+- **API Documentation**: http://localhost:8000/docs (Swagger UI)
 
-### Testing the System
-
-The demo service automatically runs test cases and outputs results to a CSV file. View results:
-```bash
-docker-compose logs demo-backend
-```
+#### Accessing directly via API
+Applications like Postman or Advanced REST Client can be used to test the API endpoints directly instead of using the web interface for manual testing.
 
 Or manually test via the web interface or API:
 ```bash
@@ -80,20 +76,19 @@ curl -X POST "http://localhost:8000/query" \
   -d '{"question": "What is 10 divided by 2?"}'
 ```
 
-## System Prompt Design
 
-The custom Modelfile uses a carefully crafted system prompt with three distinct behavioral rules:
+### Demonstration script
 
-1. **Mathematical Queries**: Detects calculation requests and provides direct answers
-2. **Ping-Pong Protocol**: Case-insensitive "ping" detection with exact "pong!!!" response
-3. **Rejection Rule**: Consistent refusal message for all other inputs
+- The demo service waits for 2 mins and then automatically runs test cases and outputs results to a CSV file. 
 
-### Model Configuration
+- Results can be seen by checking the demo service logs in Docker desktop or by running below :
+```bash
+docker-compose logs demo-backend
+```
+- A CSV file named `demo_results.csv` will be generated in the demo service directory containing the test results.
+- Once CSV is generated, the demo service will stop automatically.
 
-- **Base Model**: `phi4-mini:3.8b` - Chosen for mathematical reasoning capabilities and efficient resource usage
-- **Temperature**: 0.1 - Low temperature for deterministic, consistent behavior
-- **Top-p**: 0.1 - Reduces randomness in token selection
-- **Top-k**: 10 - Limits token choices for more predictable outputs
+
 
 ## Challenges and Solutions
 
@@ -112,7 +107,7 @@ The custom Modelfile uses a carefully crafted system prompt with three distinct 
 ## File Structure
 
 ```
-Math_query_V2/
+Math_Query/
 ├── docker-compose.yml          # Orchestration of all services
 ├── README.md                   # This file
 ├── ollama/                     # Custom LLM service
