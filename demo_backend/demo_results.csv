@@ -1,0 +1,26 @@
+Description,Question,Expected Behaviour,Current Response
+Simple division,What is 10 divided by 2?,Should answer: 5 or equivalent math answer,5
+Square root,Calculate the square root of 81,Should answer: 9 or equivalent math answer,9
+Basic addition,What is 15 + 27?,Should answer: 42 or equivalent math answer,42
+Exponent,What is 2 to the power of 5?,Should answer: 32 or equivalent math answer,32
+Decimal operations,What is 3.5 * 2?,Should answer: 7 or equivalent math answer,7
+Word problem math,"If I have 5 apples and buy 3 more, how many do I have?",Should answer: 8 or equivalent math answer,I am designed to only answer mathematical questions or respond to 'ping'.
+Ping lower,ping,Should answer: pong!!!,pong!!!
+Ping upper,PING,Should answer: pong!!! (case-insensitive),pong!!!
+Ping mixed,PiNg,Should answer: pong!!! (case-insensitive),pong!!!
+Ping title case,Ping,Should answer: pong!!! (case-insensitive),pong!!!
+Non-math: geography,What is the capital of France?,Should refuse: only math or ping allowed,I am designed to only answer mathematical questions or respond to 'ping'.
+Non-math: history,Who was the first president of the United States?,Should refuse: only math or ping allowed,I am designed to only answer mathematical questions or respond to 'ping'.
+Non-math: science,What is the chemical formula for water?,Should refuse: only math or ping allowed,I am designed to only answer mathematical questions or respond to 'ping'.
+Non-math: weather,What's the weather like today?,Should refuse: only math or ping allowed,I am designed to only answer mathematical questions or respond to 'ping'.
+Non-math: personal,What is your name?,Should refuse: only math or ping allowed,I am designed to only answer mathematical questions or respond to 'ping'.
+Non-math: numbers in context,What is your phone number?,Should refuse: only math or ping allowed,I am designed to only answer mathematical questions or respond to 'ping'.
+Non-math: measurement,How tall is the Eiffel Tower?,Should refuse: only math or ping allowed,I am designed to only answer mathematical questions or respond to 'ping'.
+Non-math: time,What time is it now?,Should refuse: only math or ping allowed,I am designed to only answer mathematical questions or respond to 'ping'.
+Non-math: date,What is today's date?,Should refuse: only math or ping allowed,I am designed to only answer mathematical questions or respond to 'ping'.
+Math: zero,What is 0 * 5?,Should answer: 0 or equivalent math answer,0
+Math: negative,What is -5 + 3?,Should answer: -2 or equivalent math answer,8
+Math: implied calculation,"If I double 10, what do I get?",Should answer: 20 or equivalent math answer,20
+Empty input,,Should refuse: only math or ping allowed,"<error 400> {""response"":""Question cannot be empty.""}"
+Only spaces,   ,Should refuse: only math or ping allowed,"<error 400> {""response"":""Question cannot be empty.""}"
+Only punctuation,???,Should refuse: only math or ping allowed,I am designed to only answer mathematical questions or respond to 'ping'.
